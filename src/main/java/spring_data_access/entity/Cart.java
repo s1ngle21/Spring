@@ -1,10 +1,12 @@
 package spring_data_access.entity;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
 
 @Component
+@Scope("prototype")
 public class Cart {
 
     private Long id;

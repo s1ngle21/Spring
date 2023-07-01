@@ -6,7 +6,6 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 import spring_data_access.dao.ProductDao;
-import spring_data_access.entity.Cart;
 import spring_data_access.entity.Product;
 import spring_data_access.mapper.ProductRowMapper;
 
