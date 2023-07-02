@@ -1,6 +1,8 @@
 package app.entity;
 
 
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -9,6 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Component
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class Order {
     private Long id;
     private LocalDateTime date;
@@ -19,13 +22,10 @@ public class Order {
     }
 
     public Order(Long id, LocalDateTime date, double cost) {
+        this.id = id;
         this.date = date;
         this.cost = cost;
         this.products = new ArrayList<>();
-    }
-
-    public void addProduct(Product product) {
-        products.add(product);
     }
 
     public Long getId() {

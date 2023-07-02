@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(name = "/ping")
+@RequestMapping(value = "/ping")
 public class Ping {
 
     @GetMapping
-    public ResponseEntity<?> isProgramWorking() {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<String> isProgramWorking() {
+        return new ResponseEntity<>("OK", HttpStatus.OK);
     }
 }

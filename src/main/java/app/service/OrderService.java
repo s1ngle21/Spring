@@ -2,10 +2,10 @@ package app.service;
 
 import app.entity.Order;
 
-import java.util.List;
+import java.util.Map;
 
 public interface OrderService {
     Order getById(Long id);
-    List<Order> getAll();
-    void add(Order order);
+    Map<Long, Order> getAll();
+    Order add(Order order);
 }

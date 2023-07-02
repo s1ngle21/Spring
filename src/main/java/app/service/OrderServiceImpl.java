@@ -4,7 +4,7 @@ import app.entity.Order;
 import app.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Map;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -20,12 +20,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getAll() {
+    public Map<Long, Order> getAll() {
         return orderRepository.getAll();
     }
 
     @Override
-    public void add(Order order) {
-        orderRepository.add(order);
+    public Order add(Order order) {
+        return orderRepository.add(order);
     }
 }

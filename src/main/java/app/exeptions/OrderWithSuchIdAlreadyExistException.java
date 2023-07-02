@@ -1,4 +1,4 @@
-package app.config.exeptions;
+package app.exeptions;
 
 public class OrderWithSuchIdAlreadyExistException extends RuntimeException {
     public OrderWithSuchIdAlreadyExistException() {

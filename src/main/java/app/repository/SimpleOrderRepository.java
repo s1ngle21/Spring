@@ -1,18 +1,18 @@
 package app.repository;
 
-import app.config.exeptions.OrderWithSuchIdAlreadyExistException;
+import app.exeptions.OrderWithSuchIdAlreadyExistException;
 import app.entity.Order;
+import app.exeptions.OrderWithSuchIdDoesNotExistException;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 @Repository
 public class SimpleOrderRepository implements OrderRepository {
 
-    private final Order order;
+    private Order order;
 
     private final Map<Long, Order> orders;
 
@@ -22,24 +22,27 @@ public class SimpleOrderRepository implements OrderRepository {
     }
 
     @Override
-    public void add(Order order) {
+    public Order add(Order order) {
         Objects.requireNonNull(order);
         if (orders.containsKey(order.getId())) {
-            throw new OrderWithSuchIdAlreadyExistException();
+            throw new OrderWithSuchIdAlreadyExistException("Order with such id: [" + order.getId() + "] already exist");
         } else {
-            orders.put(order.getId(), order);
+            return orders.put(order.getId(), order);
         }
     }
 
     @Override
     public Order getById(Long id) {
         Objects.requireNonNull(id);
+        if (orders.get(id) == null) {
+            throw new OrderWithSuchIdDoesNotExistException("Order with this id: [" + id + "] does not exist");
+        }
         return orders.get(id);
     }
 
     @Override
-    public List<Order> getAll() {
-        return (List<Order>) orders.values();
+    public Map<Long, Order> getAll() {
+        return orders;
     }
 
 
