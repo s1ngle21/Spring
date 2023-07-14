@@ -6,9 +6,9 @@ import java.util.logging.Logger;
 
 @Service
 public class LoggerService {
-    private final Logger Logger = java.util.logging.Logger.getLogger(LoggerService.class.getName());
+    private final Logger LOGGER = Logger.getLogger(LoggerService.class.getName());
 
     public void log(String message) {
-        Logger.info(message);
+        LOGGER.info(message);
     }
 }

@@ -1,6 +1,7 @@
 package spring_core;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import spring_core.entity.Product;
 
@@ -8,6 +9,7 @@ import spring_core.entity.Product;
 import java.util.*;
 
 @Component
+@Scope(value = "prototype")
 public class Cart {
 
     private Map<Long, Product> cart;
