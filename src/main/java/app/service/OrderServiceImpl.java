@@ -5,6 +5,7 @@ import app.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -16,6 +17,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order getById(Long id) {
+        Objects.requireNonNull(id);
         return orderRepository.getById(id);
     }
 
@@ -26,6 +28,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order add(Order order) {
+        Objects.requireNonNull(order);
         return orderRepository.add(order);
     }
 }

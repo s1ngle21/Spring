@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -21,7 +21,7 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<?> getOrderById(@PathVariable(name = "id") @RequestBody Long id) {
+    ResponseEntity<Order> getOrderById(@PathVariable(name = "id") Long id) {
             Order order = orderService.getById(id);
             return ResponseEntity
                     .ok()
@@ -29,20 +29,18 @@ public class OrderController {
     }
 
     @GetMapping
-    ResponseEntity<?> getAllOrders() {
+    ResponseEntity<Map<Long, Order>> getAllOrders() {
         Map<Long, Order> orders = orderService.getAll();
         return ResponseEntity
                 .ok()
                 .body(orders);
     }
 
-    @PostMapping()
-    @ResponseBody
+    @PostMapping
     ResponseEntity<Order> addOrder(@RequestBody Order order) {
             Order addedOrder = orderService.add(order);
             return ResponseEntity
                     .ok()
-                    .header("Added order", UUID.randomUUID().toString())
                     .body(addedOrder);
     }
 

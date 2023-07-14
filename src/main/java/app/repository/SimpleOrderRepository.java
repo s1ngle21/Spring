@@ -23,9 +23,8 @@ public class SimpleOrderRepository implements OrderRepository {
 
     @Override
     public Order add(Order order) {
-        Objects.requireNonNull(order);
         if (orders.containsKey(order.getId())) {
-            throw new OrderWithSuchIdAlreadyExistException("Order with such id: [" + order.getId() + "] already exist");
+            throw new OrderWithSuchIdAlreadyExistException(String.format("Order with such id: [%d] already exist", order.getId()));
         } else {
             return orders.put(order.getId(), order);
         }
@@ -33,9 +32,8 @@ public class SimpleOrderRepository implements OrderRepository {
 
     @Override
     public Order getById(Long id) {
-        Objects.requireNonNull(id);
         if (orders.get(id) == null) {
-            throw new OrderWithSuchIdDoesNotExistException("Order with this id: [" + id + "] does not exist");
+            throw new OrderWithSuchIdDoesNotExistException(String.format("Order with this id: [%d] does not exist", id));
         }
         return orders.get(id);
     }

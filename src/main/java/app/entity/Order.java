@@ -15,7 +15,7 @@ import java.util.Objects;
 public class Order {
     private Long id;
     private LocalDateTime date;
-    double cost;
+    private double totalCost;
     private List<Product> products;
 
     public Order() {
@@ -24,7 +24,7 @@ public class Order {
     public Order(Long id, LocalDateTime date, double cost) {
         this.id = id;
         this.date = date;
-        this.cost = cost;
+        this.totalCost = cost;
         this.products = new ArrayList<>();
     }
 
@@ -44,12 +44,12 @@ public class Order {
         this.date = date;
     }
 
-    public double getCost() {
-        return cost;
+    public double getTotalCost() {
+        return totalCost;
     }
 
-    public void setCost(double cost) {
-        this.cost = cost;
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
     }
 
     public List<Product> getProducts() {
@@ -65,12 +65,12 @@ public class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Double.compare(order.cost, cost) == 0 && Objects.equals(id, order.id) && Objects.equals(date, order.date) && Objects.equals(products, order.products);
+        return Double.compare(order.totalCost, totalCost) == 0 && Objects.equals(id, order.id) && Objects.equals(date, order.date) && Objects.equals(products, order.products);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, date, cost, products);
+        return Objects.hash(id, date, totalCost, products);
     }
 
     @Override
@@ -78,7 +78,7 @@ public class Order {
         return "Order{" +
                 "id=" + id +
                 ", date=" + date +
-                ", cost=" + cost +
+                ", cost=" + totalCost +
                 ", products=" + products +
                 '}';
     }
