@@ -1,12 +1,11 @@
-package spring_data_access;
+package springApp;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import spring_data_access.dao.CartDao;
-import spring_data_access.dao.ProductDao;
-import spring_data_access.dao.impl.ProductDaoImpl;
-import spring_data_access.entity.Cart;
-import spring_data_access.entity.Product;
+import springApp.dao.CartDao;
+import springApp.dao.ProductDao;
+import springApp.dao.impl.ProductDaoImpl;
+import springApp.entity.Cart;
 
 public class Demo {
     private static final String CREATE_PRODUCT_TABLE_SQL = """
@@ -25,7 +24,7 @@ public class Demo {
             """;
 
     public static void main(String[] args) {
-        ApplicationContext context = new AnnotationConfigApplicationContext("spring_data_access");
+        ApplicationContext context = new AnnotationConfigApplicationContext("springApp/data/access");
         ProductDao productDao = context.getBean(ProductDaoImpl.class);
         Cart cart = context.getBean(Cart.class);
         CartDao cartDao = context.getBean(CartDao.class);

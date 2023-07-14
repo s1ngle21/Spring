@@ -1,8 +1,8 @@
-package spring_data_access.mapper;
+package springApp.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
-import spring_data_access.entity.Product;
+import springApp.entity.Product;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

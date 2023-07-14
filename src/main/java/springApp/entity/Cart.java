@@ -1,4 +1,4 @@
-package spring_data_access.entity;
+package springApp.entity;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;

@@ -1,13 +1,13 @@
-package spring_data_access.dao.impl;
+package springApp.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
-import spring_data_access.dao.ProductDao;
-import spring_data_access.entity.Product;
-import spring_data_access.mapper.ProductRowMapper;
+import springApp.dao.ProductDao;
+import springApp.entity.Product;
+import springApp.mapper.ProductRowMapper;
 
 import java.util.List;
 import java.util.Objects;
@@ -15,11 +15,13 @@ import java.util.Objects;
 
 @Repository
 public class ProductDaoImpl implements ProductDao {
-    @Autowired
     private JdbcTemplate jdbcTemplate;
-
-    @Autowired
     private ProductRowMapper productRowMapper;
+
+    public ProductDaoImpl(JdbcTemplate jdbcTemplate, ProductRowMapper productRowMapper) {
+        this.jdbcTemplate = jdbcTemplate;
+        this.productRowMapper = productRowMapper;
+    }
 
     @Override
     public void createTable(String sql) {
@@ -48,14 +50,14 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public Product findById(Long id) {
         Objects.requireNonNull(id);
-        String sql = "Select id, name, price from products where id = ?";
+        String sql = "select id, name, price from products where id = ?";
         return jdbcTemplate.queryForObject(sql, productRowMapper, id);
     }
 
     @Override
     public boolean delete(Long id) {
         Objects.requireNonNull(id);
-        String sql = "DELETE from products where id = ?";
+        String sql = "delete from products where id = ?";
         int rowsDeleted = jdbcTemplate.update(sql, id);
         return rowsDeleted >= 1;
 
@@ -63,9 +65,7 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public List<Product> getAllProducts() {
-        List<Product> products;
-        String sql = "Select * from products";
-        products = jdbcTemplate.query(sql, productRowMapper);
-        return products;
+        String sql = "select * from products";
+        return jdbcTemplate.query(sql, productRowMapper);
     }
 }
