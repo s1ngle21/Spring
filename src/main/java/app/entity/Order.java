@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Component
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class Order {
     private Long id;
