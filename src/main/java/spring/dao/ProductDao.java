@@ -1,6 +1,6 @@
-package springApp.dao;
+package spring.dao;
 
-import springApp.entity.Product;
+import spring.entity.Product;
 
 import java.util.List;
 

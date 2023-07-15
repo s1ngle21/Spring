@@ -1,13 +1,12 @@
-package springApp.dao.impl;
+package spring.dao.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
-import springApp.dao.ProductDao;
-import springApp.entity.Product;
-import springApp.mapper.ProductRowMapper;
+import spring.dao.ProductDao;
+import spring.entity.Product;
+import spring.mapper.ProductRowMapper;
 
 import java.util.List;
 import java.util.Objects;
@@ -41,7 +40,7 @@ public class ProductDaoImpl implements ProductDao {
         Number id = jdbcInsert.executeAndReturnKey(
                 new MapSqlParameterSource()
                         .addValue("name", product.getName())
-                        .addValue("price", product.getPrice())
+                        .addValue("cost", product.getCost())
         );
         product.setId(id.longValue());
         return product;
@@ -50,7 +49,7 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public Product findById(Long id) {
         Objects.requireNonNull(id);
-        String sql = "select id, name, price from products where id = ?";
+        String sql = "select id, name, cost from products where id = ?";
         return jdbcTemplate.queryForObject(sql, productRowMapper, id);
     }
 

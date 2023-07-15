@@ -1,4 +1,4 @@
-package springApp.entity;
+package spring.entity;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -11,9 +11,11 @@ import java.util.*;
 public class Cart {
 
     private Long id;
+    private static Long nextId = 0L;
     private List<Product> products;
 
     public Cart() {
+        this.id = nextId++;
         this.products = new ArrayList<>();
     }
 
@@ -59,7 +61,8 @@ public class Cart {
     @Override
     public String toString() {
         return "Cart{" +
-                "cart=" + products +
+                "id=" + id +
+                ", products=" + products +
                 '}';
     }
 }

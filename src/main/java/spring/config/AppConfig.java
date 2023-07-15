@@ -1,8 +1,9 @@
-package springApp.config;
+package spring.config;
 
 import org.postgresql.ds.PGSimpleDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -12,6 +13,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @PropertySource(value = {"classpath:db.properties"})
+@ComponentScan(basePackages = "spring")
 public class AppConfig {
     private static final String DB_URL = "db.url";
     private static final String DB_PASSWORD = "db.password";
